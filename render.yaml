@@ -1,0 +1,12 @@
+services:
+  - type: worker
+    name: telegram-crypto-trader
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python bot.py"
+    envVars:
+      - key: TELEGRAM_TOKEN
+        fromService:
+          type: secret_file
+          name: telegram_token
+          key: token
